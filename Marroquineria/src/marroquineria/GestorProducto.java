@@ -37,14 +37,14 @@ public class GestorProducto {
 			}
 			if(exito==true) {
 				misProductos.add(elProducto);
-				System.out.println("El producto fue cargado con éxito..."+ "EXITO: "+exito);
+				
 			}else {
-				System.out.println("El producto ingresado ya se encuentra cargado..."+ "EXITO: "+exito);
+				
 			}
 		}else {
 			misProductos.add(elProducto);
 			exito = true; 
-			System.out.println("Producto cargado con exito..."); 
+			
 		}
 		
 		return exito;

@@ -38,14 +38,14 @@ public class GestorComprador {
 			}
 			if(exito==true) { 
 				misCompradores.add(elComprador);
-				System.out.println("El comprador fue cargado con éxito..."+ "EXITO: "+exito);
+				
 			}else {
-				System.out.println("El comprador ingresado ya se encuentra cargado..."+ "EXITO: "+exito);
+				
 			}
 		}else {
 			misCompradores.add(elComprador);
 			exito = true; 
-			System.out.println("Comprador cargado con exito..."); 
+			
 			 
 		}
 		
