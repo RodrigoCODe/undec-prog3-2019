@@ -6,9 +6,9 @@ public abstract class Producto {
 
 	private String nombre;
 	private String codigo;
-	//usar list
-	private ArrayList<Precio> losPrecios = new ArrayList<Precio>();
-	//private Precio elPrecio;
+
+	private List<Precio> losPrecios = new ArrayList<Precio>();
+
 	
 	
 	public Producto(String nombre,String codigo, Precio elPrecio) {

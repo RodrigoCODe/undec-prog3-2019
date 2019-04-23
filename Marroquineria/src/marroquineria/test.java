@@ -9,8 +9,7 @@ public class test {
 		
 		Producto p1 = new Zapato("Zapatilla", "COD123", new Precio(123.50),"Rojo", "Nike", Genero.M);
 		
-		//System.out.println("Carga producto 1: "+ p2.getNombre()+" | Codigo: "+p2.getCodigo()+ " | Precio: "+p2.getLosPrecios().get(0).getValor()
-			//	+ " | Fecha: "+ p2.getLosPrecios().get(0).toString());
+	
 		Producto p2 = new Cartera("Mochila","COD125", new Precio(700.79), "Blanco", "Adidas", Genero.F);
 		
 		Producto p3 = new Zapato("Zapatilla", "COD124", new Precio(959.50),"Negro","Topper", Genero.U);
@@ -107,7 +106,7 @@ public class test {
 				get(a1.getMisProductos().get(2).getLosPrecios().size()-1).getValor()
 				+" (Fecha de Precio: "+a1.getMisProductos().get(2).getLosPrecios().get(0).toString()
 				
-				//get(a1.getMisProductos().get(2).getLosPrecios().size()-1)+")"
+				
 				+" - Marca: "+((Zapato) a1.getMisProductos().get(2)).getMarca()
 				+" - Color: "+((Zapato) a1.getMisProductos().get(2)).getColor()
 				+" - Genero: "+ ((Zapato) a1.getMisProductos().get(2)).getGender().getLargo()
@@ -129,7 +128,7 @@ public class test {
 				a3.getMisFacturas().get(0).getComprador().getDni());
 		System.out.println("Detalles de Factura: ");
 		int a= a3.getMisFacturas().get(0).getLosDetalles().size();
-		//System.out.println("Cantidad de detalles por factura: "+a);
+		
 		double total=0;
 		for(int i=0; i< a;++i) {
 			

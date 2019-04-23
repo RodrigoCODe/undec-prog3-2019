@@ -14,11 +14,6 @@ public class GestorProducto {
 		
 	}
 	
-	//pruductos ordenados : return collections.sort(array);
-	//SINGLETON
-	// PARA LLAMAR : GestorProducto gp = GestorProducto.getInstancia();
-	//la idea es que la instancia del gestor debe ser la misma y no una nueva
-	
 
 	public static GestorProducto getInstancia() {
 		if(gp==null) { 

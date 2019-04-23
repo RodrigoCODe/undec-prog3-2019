@@ -23,7 +23,7 @@ public class GestorFactura {
 	
 	public boolean addFactura(Factura laFactura) { 
 		misFacturas.add(laFactura);
-//		
+	
 		return true;
 	}
 

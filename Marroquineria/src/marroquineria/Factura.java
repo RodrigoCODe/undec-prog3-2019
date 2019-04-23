@@ -41,16 +41,6 @@ public class Factura {
 	}
 
 	public boolean addDetalle(Detalle elDetalle) {
-//		boolean exito=false;
-//		for(Detalle d : losDetalles) {
-//			if(d.getProducto().getCodigo().equals(elDetalle.getProducto().getCodigo())==true) {
-//				System.out.println("Detalle existente");
-//				exito=false;
-//			}else {
-//				losDetalles.add(elDetalle);
-//				exito=true;
-//			}
-//		} 
 		losDetalles.add(elDetalle);
 		return true;
 	}
