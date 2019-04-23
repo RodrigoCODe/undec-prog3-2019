@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 public abstract class Producto {
 
-	private String nombre;
-	private String codigo;
-	private String color;
-	private String marca;
+	private final String nombre;
+	private final String codigo;
+	private final String color;
+	private final String marca;
 
-	private List<Precio> losPrecios = new ArrayList<Precio>();
+	private final List<Precio> losPrecios = new ArrayList<Precio>();
 
 	
 	
