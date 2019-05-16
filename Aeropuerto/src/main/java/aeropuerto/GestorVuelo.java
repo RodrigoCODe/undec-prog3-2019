@@ -19,7 +19,7 @@ public class GestorVuelo {
 			return gv;  
 		}else {
 			return gv; 
-		} 
+		}  
 	} 
 	
 	public boolean AgregarVuelo(Vuelo unVuelo) throws ObjetoNoEncontradoException{ 
@@ -94,6 +94,8 @@ public class GestorVuelo {
 	public ArrayList<Vuelo> getLosVuelos() {
 		return losVuelos;
 	}    
+	
+	
 	
 	
 

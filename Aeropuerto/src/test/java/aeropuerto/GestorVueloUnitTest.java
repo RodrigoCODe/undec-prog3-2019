@@ -80,14 +80,17 @@ class GestorVueloUnitTest {
 		
 		assertEquals(1, gv.getLosVuelos().size());
 		assertEquals("Vuelo1",gv.getLosVuelos().get(0).getCodigoVuelo());
-		assertEquals("Alarcon",gv.getLosVuelos().get(0).getLosPasajerosVuelo().get(1).getApellido());
+		assertEquals("Alarcon",gv.getLosVuelos().get(0).getLosPasajerosAsignados().get(1).getElPasajero().getApellido());
 		assertEquals("Boeing 747", gv.getLosVuelos().get(0).getElAvionVuelo().getModelo());
-		assertEquals(3, gv.getLosVuelos().get(0).getLosPasajerosVuelo().size());
+		assertEquals(3, gv.getLosVuelos().get(0).getLosPasajerosAsignados().size());
 		assertThrows(ObjetoNoEncontradoException.class, () -> gv.AgregarVuelo(otroVuelo));
 		
 	}
 	
 	
 	
+	
+	
 
 }
+

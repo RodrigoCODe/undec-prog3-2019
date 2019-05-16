@@ -61,17 +61,21 @@ class VueloUnitTest {
  		
  		//Avion
  		
- 		GestorAvion gv= new GestorAvion();  
-		
+ 		
  		Avion unAvion = new Avion(1,"Boeing 747", "XEOS939"); 
  		
+ 		
+ 		 
  		//Vuelo
  		
+ 	
+ 		
  		Vuelo elVuelo = new Vuelo("Vuelo1", salida, arribo, fechaHoraSalida, fechaHoraArribo, 
- 				unaAerolinea, losPilotosVuelo, losPasajerosVuelo, unAvion);
+ 				unaAerolinea, losPilotosVuelo, losPasajerosVuelo , unAvion);
  		
  		//assert
- 		
+ 		 
+ 	
  		assertEquals("Aeropuerto Cordoba", elVuelo.getSalida().getNombre());
  		assertEquals("Aeropuerto Buenos Aires", elVuelo.getArribo().getNombre());
  		assertEquals("FlyBondi", elVuelo.getLaAerolineaVuelo().getNombre());
@@ -79,11 +83,15 @@ class VueloUnitTest {
  		assertEquals("2019-05-17T11:30", elVuelo.getFechaHoraArribo().toString());
  		assertEquals("Ruiz", elVuelo.getLosPilotosVuelo().get(0).getApellido());
  		assertEquals("26177127", elVuelo.getLosPilotosVuelo().get(1).getDocumento());
- 		assertEquals("Mariana", elVuelo.getLosPasajerosVuelo().get(0).getNombres());
+ 		assertEquals("Mariana", elVuelo.getLosPasajerosAsignados().get(0).getElPasajero().getNombres());
  		assertEquals(2, elVuelo.getLosPilotosVuelo().size());
- 		assertEquals(3, elVuelo.getLosPasajerosVuelo().size());
+ 		assertEquals(3, elVuelo.getLosPasajerosAsignados().size());
  		assertEquals("Boeing 747", elVuelo.getElAvionVuelo().getModelo());
  		assertEquals("XEOS939", elVuelo.getElAvionVuelo().getMatricula());
+ 		assertSame(2, elVuelo.getLosPasajerosAsignados().get(2).getElAsiento().getIdAsiento());
+ 		assertEquals("Alarcon", elVuelo.traerPasajeroPorNumeroDeAsiento("1").getApellido());
+ 
+ 		
 	}
 
 }

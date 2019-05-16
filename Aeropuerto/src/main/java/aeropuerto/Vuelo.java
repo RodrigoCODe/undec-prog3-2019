@@ -12,7 +12,7 @@ public class Vuelo {
 	private LocalDateTime fechaHoraArribo;
 	private Aerolinea laAerolineaVuelo;
 	private ArrayList<Piloto> losPilotosVuelo = new ArrayList<Piloto>();
-	private ArrayList<Pasajero> losPasajerosVuelo = new ArrayList<Pasajero>();
+	private ArrayList<Asignacion> losPasajerosAsignados = new ArrayList<Asignacion>();
 	private Avion elAvionVuelo;
 	
 	public Vuelo(String codigoVuelo, Aeropuerto salida, Aeropuerto arribo, LocalDateTime fechaHoraSalida,
@@ -31,7 +31,7 @@ public class Vuelo {
 					}else {
 						if(fechaHoraSalida == null) {
 							throw new ObjetoNoEncontradoException("La Fecha de Salida no se encuentra");
-						}else {
+						}else { 
 							if(fechaHoraSalida.isAfter(fechaHoraArribo)) {
 								throw new FechaIncorrectaException("La Fecha de salida y arribo son incorrectas");
 							}else {
@@ -54,7 +54,7 @@ public class Vuelo {
 												this.fechaHoraArribo = fechaHoraArribo;
 												this.laAerolineaVuelo = laAerolineaVuelo;
 												this.losPilotosVuelo = losPilotosVuelo;
-												this.losPasajerosVuelo = losPasajerosVuelo;
+												this.losPasajerosAsignados = AsignarPasajerosAsiento(losPasajerosVuelo, elAvionVuelo.getLosAsientos());
 												this.elAvionVuelo = elAvionVuelo;
 												
 											}
@@ -97,12 +97,29 @@ public class Vuelo {
 		return losPilotosVuelo;
 	}
 
-	public ArrayList<Pasajero> getLosPasajerosVuelo() {
-		return losPasajerosVuelo;
+	public ArrayList<Asignacion> getLosPasajerosAsignados() {
+		return losPasajerosAsignados;
 	}
+	
+	
+	public  ArrayList<Asignacion> AsignarPasajerosAsiento(ArrayList<Pasajero> losPasajerosQueViajan, ArrayList<Asiento> losAsientos) 
+			throws ObjetoNoEncontradoException, StringNuloException{
+		if(losPasajerosQueViajan.isEmpty()) {
+			throw new ObjetoNoEncontradoException("Los Pasajeros No se encontraron");
+		}else {
+			
+			for(Integer i=0; i< losPasajerosQueViajan.size() ;++i ) {
+				Asignacion unaAsignacion = new Asignacion(i.toString(), losPasajerosQueViajan.get(i),
+						losAsientos.get(i));
+				losPasajerosAsignados.add(unaAsignacion);
+			}
+		}
+		return losPasajerosAsignados;
+	}
+	
 
 	public Avion getElAvionVuelo() {
-		return elAvionVuelo;
+		return elAvionVuelo; 
 	}
 
 	public void setFechaHoraSalida(LocalDateTime fechaHoraSalida) {
@@ -113,8 +130,28 @@ public class Vuelo {
 		this.fechaHoraArribo = fechaHoraArribo;
 	}
 	
+	public Pasajero traerPasajeroPorNumeroDeAsiento(String numeroAsiento) throws StringNuloException,ObjetoNoEncontradoException {
+		Pasajero elPasajero=null;
+		boolean exito=false;
+		if(numeroAsiento == null || numeroAsiento == "") {
+			throw new StringNuloException("El Numero de Asiento no es Valido");
+		}else {
+			for(int i=0;i<losPasajerosAsignados.size();++i) {
+				if(losPasajerosAsignados.get(i).getElAsiento().getNumeroAsiento().equals(numeroAsiento)) {
+					elPasajero = losPasajerosAsignados.get(i).getElPasajero();
+					exito=true;
+					break;
+				}else{
+                    exito=false; 
+				}
+			}
+			if(exito==true){
+                return elPasajero;
+			}else{
+                throw new ObjetoNoEncontradoException("El Pasajero no fue encontrado");
+			}
+		}
+		
+	}
 	
-	
-	
-
 }
