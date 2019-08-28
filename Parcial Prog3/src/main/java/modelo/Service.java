@@ -65,11 +65,11 @@ public class Service {
 		String devuelve;
 		return 
 		devuelve =		
-		"Service N°"+ getIdServicio() + 
-		"Cliente: " + elCliente.getApellido()+" ,"+elCliente.getNombres()+" - "+elCliente.getTelefono()
-		+"Vehiculo: "+ elVehiculo.getMarcaModelo() + " "+ elVehiculo.getAnio()+ " -  Patente: "+
+		"Service Nro: "+ getIdServicio() + 
+		"\n Cliente: " + elCliente.getApellido()+" ,"+elCliente.getNombres()+" - "+elCliente.getTelefono()
+		+"\n Vehiculo: "+ elVehiculo.getMarcaModelo() + " "+ elVehiculo.getAnio()+ " -  Patente: "+
 		elVehiculo.getPatente()
-		+ "Trabajo Realizado: "+ getDetalle();
+		+ "\n Trabajo Realizado: "+ getDetalle();
 		
 	}
 	
