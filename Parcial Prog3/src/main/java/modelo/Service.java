@@ -13,6 +13,7 @@ public class Service {
 	private String detalle;
 	private float precio;
 	
+	
 	public Service(int idServicio, Vehiculo elVehiculo, Cliente elCliente, LocalDate fechaServicio, String detalle
 			, float precio) {
 		
@@ -58,6 +59,18 @@ public class Service {
 
 	public float getPrecio() {
 		return precio;
+	}
+
+	public String mostrarResumen() {
+		String devuelve;
+		return 
+		devuelve =		
+		"Service N°"+ getIdServicio() + 
+		"Cliente: " + elCliente.getApellido()+" ,"+elCliente.getNombres()+" - "+elCliente.getTelefono()
+		+"Vehiculo: "+ elVehiculo.getMarcaModelo() + " "+ elVehiculo.getAnio()+ " -  Patente: "+
+		elVehiculo.getPatente()
+		+ "Trabajo Realizado: "+ getDetalle();
+		
 	}
 	
 	
