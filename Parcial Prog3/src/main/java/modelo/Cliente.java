@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import excepciones.ClienteIncompletoException;
+import excepciones.ClienteMenorDeEdadException;
+import repositorio.IDateTime;
 
 
 public class Cliente {
@@ -12,11 +14,13 @@ public class Cliente {
 	private Integer idCliente;
 	private String apellido;
 	private String nombres;
-	private String documento;
+	private String documento; 
 	private LocalDate fechaNacimiento;
 	private String domicilio;
 	private String telefono;
 	private ArrayList<Vehiculo> losVehiculos = new ArrayList<Vehiculo>();
+	private LocalDate fechaDeHoy = LocalDate.now();
+	
 	
 	private Cliente(String apellido, String nombres, String documento, LocalDate fechaNacimiento, String domicilio,
 			String telefono) {
@@ -30,16 +34,22 @@ public class Cliente {
 	
 	
 	public static Cliente factoryCliente(Integer idCliente, String apellido, String nombres, String documento, 
-			LocalDate fechaDeNacimiento, String domicilio, String telefono) throws ClienteIncompletoException {
+			LocalDate fechaDeNacimiento, String domicilio, String telefono) throws ClienteIncompletoException, ClienteMenorDeEdadException {
 		
+			LocalDate fechaDeHoy = LocalDate.now();
 			if(apellido == null || apellido == "" || nombres == null || nombres == "" || nombres == null 
 				|| documento == "" || documento == null || domicilio == "" || domicilio == null ||
-				telefono == null ||	telefono == "") {
+				telefono == null ||	telefono == "") { 
 					throw new ClienteIncompletoException();
 			}else {
-
+				if(fechaDeHoy.getYear() - fechaDeNacimiento.getYear() <= 17) {
+					throw new ClienteMenorDeEdadException();
+				}else {
 					return new Cliente(apellido, nombres, documento, fechaDeNacimiento,domicilio, telefono);
 				}
+						
+			}
+			
 								
 	}
 
@@ -108,9 +118,19 @@ public class Cliente {
 		
 		return getLosVehiculos();
 	}
+
+
+	public LocalDate getFechaDeHoy() {
+		return fechaDeHoy;
+	}
 	
-	
-	
+	public String mostrarDatosCliente() {
+		String devuelve;
+		return 
+		devuelve =		
+		getApellido() + ", "+ getNombres() +" - "+ getTelefono();
+		
+	}
 	
 	
 }

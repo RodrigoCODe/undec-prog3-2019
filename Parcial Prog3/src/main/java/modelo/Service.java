@@ -2,6 +2,7 @@ package modelo;
 
 import java.time.LocalDate;
 
+import excepciones.ServiceFechaIncorrectaException;
 import excepciones.ServiceIncompletoException;
 
 public class Service {
@@ -26,12 +27,17 @@ public class Service {
 	}
 	
 	public static Service factoryService(int idServicio, Vehiculo elVehiculo, Cliente elCliente, LocalDate fechaServicio, 
-			String detalle, float precio) throws ServiceIncompletoException {
-		
+			String detalle, float precio) throws ServiceIncompletoException, ServiceFechaIncorrectaException {
+		LocalDate fechaDeHoy = LocalDate.now();
 		if(idServicio == 0 || elVehiculo == null || elCliente== null) {
 			throw new ServiceIncompletoException();
 		}else {
-			return new Service(idServicio, elVehiculo, elCliente, fechaServicio, detalle, precio);
+			if(fechaServicio.isAfter(fechaDeHoy)) {
+				throw new ServiceFechaIncorrectaException();
+			}else {
+				return new Service(idServicio, elVehiculo, elCliente, fechaServicio, detalle, precio);
+			}
+			
 		}
 		
 	}
@@ -66,10 +72,10 @@ public class Service {
 		return 
 		devuelve =		
 		"Service Nro: "+ getIdServicio() + 
-		"\n Cliente: " + elCliente.getApellido()+" ,"+elCliente.getNombres()+" - "+elCliente.getTelefono()
-		+"\n Vehiculo: "+ elVehiculo.getMarcaModelo() + " "+ elVehiculo.getAnio()+ " -  Patente: "+
+		"\nCliente: " + elCliente.getApellido()+", "+elCliente.getNombres()+" - "+elCliente.getTelefono()
+		+"\nVehiculo: "+ elVehiculo.getMarcaModelo() + " modelo "+ elVehiculo.getAnio()+ " - Patente "+
 		elVehiculo.getPatente()
-		+ "\n Trabajo Realizado: "+ getDetalle();
+		+ "\nTrabajo Realizado: "+ getDetalle();
 		
 	}
 	
