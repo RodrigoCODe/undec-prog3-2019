@@ -7,6 +7,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 
+import Exceptions.JugadorExisteException;
+import Exceptions.JugadorIncompletoException;
+import Interactor.IRepositorioModificarJugador;
+import Interactor.ModificarJugadorUseCase;
+
 import java.time.LocalDate;
 
 import static org.mockito.Mockito.*;

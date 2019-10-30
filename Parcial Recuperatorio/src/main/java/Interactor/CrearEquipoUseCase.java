@@ -1,6 +1,5 @@
 package Interactor;
 
-import java.util.ArrayList;
 
 import Exceptions.EquipoExisteException;
 import Model.Equipo;
