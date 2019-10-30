@@ -4,6 +4,8 @@ import Model.Jugador;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import Exceptions.JugadorIncompletoException;
+
 import java.time.LocalDate;
 
 public class JugadorUnitTest {

@@ -5,6 +5,8 @@ import Model.Jugador;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import Exceptions.EquipoIncompletoException;
+
 import java.util.ArrayList;
 
 public class EquipoUnitTest {

@@ -3,10 +3,16 @@ package InteractorUnitTest;
 import Mockito.MockitoExtension;
 import Model.Equipo;
 import Model.Jugador;
+import Repositorio.IRepositorioCrearEquipo;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+
+import Exceptions.EquipoExisteException;
+import Exceptions.EquipoIncompletoException;
+import Interactor.CrearEquipoUseCase;
 
 import java.util.ArrayList;
 
@@ -20,7 +26,7 @@ public class CrearEquipoUseCaseUnitTest {
 
 
     @Test
-    public void crearEquipo_EquipoNoExiste_GuardaCorrectamente() throws EquipoIncompletoException, EquipoExisteException {
+    public void crearEquipo_EquipoNoExiste_GuardaCorrectamente() throws EquipoIncompletoException, EquipoIncompletoException, EquipoExisteException {
         Equipo EquipoNuevo=Equipo.instancia(null,"Barcelona", new ArrayList<Jugador>());
         when(crearEquipoGateway.findByNombre("Barcelona")).thenReturn(null);
         when(crearEquipoGateway.guardar(EquipoNuevo)).thenReturn(true);
@@ -30,7 +36,7 @@ public class CrearEquipoUseCaseUnitTest {
     }
 
     @Test
-    public void crearEquipo_EquipoExiste_EquipoExisteException() throws EquipoIncompletoException {
+    public void crearEquipo_EquipoExiste_EquipoExisteException() throws EquipoIncompletoException, EquipoExisteException {
         Equipo EquipoNuevo=Equipo.instancia(null,"Barcelona", new ArrayList<Jugador>());
         when(crearEquipoGateway.findByNombre("Barcelona")).thenReturn(Equipo.instancia(2,"Barcelona", new ArrayList<Jugador>()));
         CrearEquipoUseCase crearEquipoUseCase = new CrearEquipoUseCase(crearEquipoGateway);
