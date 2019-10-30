@@ -3,6 +3,7 @@ package interactorUnitTest;
 import Mockito.MockitoExtension;
 import excepciones.ClienteExisteException;
 import excepciones.ClienteIncompletoException;
+import excepciones.ClienteMenorDeEdadException;
 import interactor.CrearClienteUseCase;
 import modelo.Cliente;
 import repositorio.IRepositorioCrearCliente;
@@ -24,7 +25,7 @@ public class crearClienteUnitTest {
 
 
     @Test
-    public void crearCliente_ClienteNoExiste_GuardaCorrectamente() throws ClienteIncompletoException, ClienteExisteException {
+    public void crearCliente_ClienteNoExiste_GuardaCorrectamente() throws ClienteIncompletoException, ClienteExisteException, ClienteMenorDeEdadException {
         Cliente ClienteNuevo=Cliente.factoryCliente(1,"Perez", "Juan","12345678",LocalDate.of(1990, 1, 1) , "Av. San Martin 123", "15152020");
         when(crearClienteGateway.guardar(ClienteNuevo)).thenReturn(true);
         CrearClienteUseCase crearClienteUseCase = new CrearClienteUseCase(crearClienteGateway);
@@ -32,12 +33,14 @@ public class crearClienteUnitTest {
         Assertions.assertTrue(resultado);
     }
 
-    @Test
-    public void crearCliente_ClienteExiste_ClienteExisteException() throws ClienteIncompletoException {
+    @Test 
+    public void crearCliente_ClienteExiste_ClienteExisteException() throws ClienteIncompletoException, ClienteMenorDeEdadException {
     	Cliente ClienteNuevo=Cliente.factoryCliente(1,"Perez", "Juan","12345678",LocalDate.of(1990, 1, 1) , "Av. San Martin 123", "15152020");
         when(crearClienteGateway.findByDNI("12345678")).thenReturn(Cliente.factoryCliente(1,"Lopez", "Carlos","12345678",LocalDate.of(1990, 1, 1) , "Av. San Martin 999", "15152020"));
         CrearClienteUseCase crearClienteUseCase = new CrearClienteUseCase(crearClienteGateway);
         Assertions.assertThrows(ClienteExisteException.class, () -> crearClienteUseCase.crearCliente(ClienteNuevo));
 
     }
+    
+    
 }

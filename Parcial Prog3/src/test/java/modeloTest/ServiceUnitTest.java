@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import excepciones.ClienteIncompletoException;
+import excepciones.ClienteMenorDeEdadException;
+import excepciones.ServiceFechaIncorrectaException;
 import excepciones.ServiceIncompletoException;
 import excepciones.VehiculoIncompletoException;
 import modelo.Cliente;
@@ -18,7 +20,7 @@ class ServiceUnitTest {
 
 	
 	@Test
-	void instanciarService_ServiceCompleto_instanciaCorrecta() throws ClienteIncompletoException, ServiceIncompletoException, VehiculoIncompletoException {
+	void instanciarService_ServiceCompleto_instanciaCorrecta() throws ClienteIncompletoException, ServiceIncompletoException, VehiculoIncompletoException, ClienteMenorDeEdadException, ServiceFechaIncorrectaException {
 		Vehiculo elVehiculo = Vehiculo.factoryVehiculo(1, "VW Golf", "ABC123", 2009);
 		Cliente elCliente = Cliente.factoryCliente(1, "Perez", "Juan", "12345678", LocalDate.of(1990, 1, 1),
 				"Av. San Martin 123", "15152020");
@@ -29,18 +31,28 @@ class ServiceUnitTest {
 	}
 	
 	@Test
-	void instanciarService_ServiceSinVehiculo_ServiceIncompletoException() throws ClienteIncompletoException {
+	void instanciarService_ServiceSinVehiculo_ServiceIncompletoException() throws ClienteIncompletoException, ClienteMenorDeEdadException {
 
 		Cliente elCliente = Cliente.factoryCliente(1, "Perez", "Juan", "12345678", LocalDate.of(1990, 1, 1),
 				"Av. San Martin 123", "15152020");
 		Assertions.assertThrows(ServiceIncompletoException.class, () -> Service.factoryService(1, null, elCliente,
 				LocalDate.of(2018, 10, 10), "Cambio de Aceite y Filtro", 1500.00f));
 	}
-
-
+		
+	@Test 
+	void instanciarService_fechaIncorrecta_ServiceFechaIncorrectaException() throws VehiculoIncompletoException, ClienteIncompletoException, ClienteMenorDeEdadException {
+		LocalDate fechaIncorrecta = LocalDate.now().plusDays(1);
+		Vehiculo elVehiculo = Vehiculo.factoryVehiculo(1, "VW Golf", "ABC123", 2009);
+		Cliente elCliente = Cliente.factoryCliente(1, "Perez", "Juan", "12345678", LocalDate.of(1990, 1, 1),
+				"Av. San Martin 123", "15152020");
+		Assertions.assertThrows(ServiceFechaIncorrectaException.class, () -> Service.factoryService(1, elVehiculo, elCliente,
+				fechaIncorrecta, "Cambio de Aceite y Filtro", 1500.00f));
+	}
+	
+	
 
 	@Test
-	void mostrarResumen_formatoEspecifico_muestraFormateado() throws ClienteIncompletoException, ServiceIncompletoException, VehiculoIncompletoException {
+	void mostrarResumen_formatoEspecifico_muestraFormateado() throws ClienteIncompletoException, ServiceIncompletoException, VehiculoIncompletoException, ClienteMenorDeEdadException, ServiceFechaIncorrectaException {
 		Vehiculo elVehiculo = Vehiculo.factoryVehiculo(1, "VW Golf", "ABC123", 2009);
 		Cliente elCliente = Cliente.factoryCliente(1, "Perez", "Juan", "12345678", LocalDate.of(1990, 1, 1),
 				"Av. San Martin 123", "15152020");

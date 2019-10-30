@@ -1,7 +1,5 @@
 package modelo;
 
-import java.time.LocalDate;
-
 import excepciones.VehiculoIncompletoException;
 
 public class Vehiculo {
@@ -43,6 +41,12 @@ public class Vehiculo {
 
 	public int getAnio() {
 		return anio;
+	}
+
+
+	public String mostrarVehiculo() {
+		String devuelve;		
+		return devuelve= getMarcaModelo() + " modelo "+ getAnio() +" - Patente "+ getPatente();
 	}
 	
 	
