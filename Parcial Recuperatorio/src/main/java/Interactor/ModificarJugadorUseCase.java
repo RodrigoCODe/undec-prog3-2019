@@ -21,7 +21,7 @@ public class ModificarJugadorUseCase {
 			return nuevoJugador != null;
 	
 	}
-		return false;
+		return true;
 
 	}
 }
