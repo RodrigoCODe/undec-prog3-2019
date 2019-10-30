@@ -25,7 +25,7 @@ public class Jugador {
     public static Jugador instancia(Integer idJugador, String nombre, LocalDate fechaNacimiento, 
     		double estatura, String documento) throws JugadorIncompletoException {
     	
-    	if(idJugador == null || nombre == "" || fechaNacimiento == null || estatura <= 0 || documento == "") {
+    	if(nombre == "" || fechaNacimiento == null || estatura <= 0 || documento == "") {
     		throw new JugadorIncompletoException();
     	}else {
     		return new Jugador(idJugador, nombre, fechaNacimiento, estatura, documento);

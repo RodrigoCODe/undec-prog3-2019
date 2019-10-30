@@ -21,7 +21,7 @@ public class Equipo {
     }
     
     public static Equipo instancia(Integer idEquipo, String nombre, ArrayList<Jugador> jugadores) throws EquipoIncompletoException {
-    	if(idEquipo == null || nombre == "") {
+    	if(nombre == "") {
     		throw new EquipoIncompletoException();
     	}else {
     		return new Equipo(idEquipo, nombre);
