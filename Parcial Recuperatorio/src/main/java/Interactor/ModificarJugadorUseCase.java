@@ -1,6 +1,7 @@
 package Interactor;
 
 import Model.Jugador;
+import Repositorio.IRepositorioModificarJugador;
 
 public class ModificarJugadorUseCase {
 	
@@ -18,10 +19,9 @@ public class ModificarJugadorUseCase {
 	public boolean modificarJugador(Jugador nuevoJugador) {
 		if(existeJugador(nuevoJugador)) {
 			return nuevoJugador != null;
-		
-	}else {
+	
+	}
 		return false;
-	}
-	}
 
+	}
 }

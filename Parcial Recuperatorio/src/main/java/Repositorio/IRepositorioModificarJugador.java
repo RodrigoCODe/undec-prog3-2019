@@ -1,4 +1,4 @@
-package Interactor;
+package Repositorio;
 
 import Model.Jugador;
 

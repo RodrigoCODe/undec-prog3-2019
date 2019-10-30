@@ -2,6 +2,8 @@ package InteractorUnitTest;
 
 import Mockito.MockitoExtension;
 import Model.Jugador;
+import Repositorio.IRepositorioModificarJugador;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -9,7 +11,6 @@ import org.mockito.Mock;
 
 import Exceptions.JugadorExisteException;
 import Exceptions.JugadorIncompletoException;
-import Interactor.IRepositorioModificarJugador;
 import Interactor.ModificarJugadorUseCase;
 
 import java.time.LocalDate;
